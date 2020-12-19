@@ -5,6 +5,8 @@ VisualStudioVersion = 16.0.30803.129
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iD3.Service", "iD3.Service\iD3.Service.csproj", "{9A7DEBFD-12B1-4826-A38F-8A4BC28F9082}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "iD3.Service.Test", "..\iD3.Service.Test\iD3.Service.Test.csproj", "{E9D10BA3-7913-4E48-8563-269337D60E33}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{9A7DEBFD-12B1-4826-A38F-8A4BC28F9082}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9A7DEBFD-12B1-4826-A38F-8A4BC28F9082}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9A7DEBFD-12B1-4826-A38F-8A4BC28F9082}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9D10BA3-7913-4E48-8563-269337D60E33}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9D10BA3-7913-4E48-8563-269337D60E33}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9D10BA3-7913-4E48-8563-269337D60E33}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9D10BA3-7913-4E48-8563-269337D60E33}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
