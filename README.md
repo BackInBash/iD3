@@ -1,7 +1,7 @@
 # iD3 Service
 ID3 Tag Metadata Service to add Metadata information from LastFM to your local music Library.
 
-![](id3.svg)
+![](id3.png)
 
 ## Install
 **Register as Windows Service**
