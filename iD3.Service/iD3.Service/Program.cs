@@ -30,8 +30,11 @@ namespace iD3.Service
             var logconsole = new NLog.Targets.ConsoleTarget("logconsole");
 
             // Rules for mapping loggers to targets            
+#if DEBUG
+            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logfile);
+#else
             config.AddRule(LogLevel.Info, LogLevel.Fatal, logfile);
-            config.AddRule(LogLevel.Debug, LogLevel.Fatal, logconsole);
+#endif
             // Apply config           
             NLog.LogManager.Configuration = config;
         }

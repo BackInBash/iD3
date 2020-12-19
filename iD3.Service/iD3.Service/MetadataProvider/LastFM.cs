@@ -83,7 +83,7 @@ namespace iD3.Service.MetadataProvider
                 var res = await client.DownloadStringTaskAsync(API + "?method=track.getInfo&api_key=" + APIKEY + "&artist=" + Uri.EscapeDataString(track.artist) + "&track=" + Uri.EscapeDataString(track.title) + "&format=json");
                 var data = JsonConvert.DeserializeObject<LastFmData>(res);
 
-                if (data.Track.Artist.Name.Equals(track.artist) && data.Track.Name.Equals(track.title) && data.Track.Album.Title.Equals(track.album))
+                if (data.Track.Artist.Name.Equals(track.artist) && data.Track.Name.Equals(track.title))
                 {
                     return data;
                 }

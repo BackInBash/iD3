@@ -1,11 +1,42 @@
-﻿using System;
+﻿using iD3.Service.MetadataProvider;
+using Newtonsoft.Json;
+using NLog;
+using System;
 using System.IO;
+using System.Linq;
 using System.Threading;
+using System.Threading.Tasks;
 
 namespace iD3.Service
 {
     public class Work
     {
+        /// <summary>
+        /// Merge ID3 Tags
+        /// </summary>
+        /// <param name="track"></param>
+        /// <returns></returns>
+        public async static Task MergeMetadata(string track, NLog.Logger logger)
+        {
+            LastFM lastFM = new LastFM();
+            Local local = new Local();
+
+            var data = await local.GetMetaData(track);
+            var lastFMdata = await lastFM.GetMetadata(data);
+
+            if(lastFMdata != null)
+            {
+                logger.Debug("Recived LastFM Metadata");
+                if (data.genre == null)
+                {
+                    data.genre = lastFMdata.Track.Toptags.Tag.Select(x => x.Name).ToArray();
+                    logger.Debug("LastFM Metadata "+JsonConvert.SerializeObject(lastFMdata, Formatting.Indented));
+                    await local.SetID3(data, track);
+                    logger.Info("Saved LastFM Metadata");
+                }
+            }
+
+        }
         /// <summary>
         /// File System Watcher Task
         /// </summary>
