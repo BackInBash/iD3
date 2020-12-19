@@ -1,11 +1,6 @@
 ﻿using iD3.Service.MetadataProvider;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel.Channels;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace iD3.Service.Test.MetadataProvider
 {
