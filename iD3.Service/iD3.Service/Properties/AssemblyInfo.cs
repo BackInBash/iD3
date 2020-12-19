@@ -6,11 +6,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("iD3.Service")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("BackInBash")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("iD3.Service")]
-[assembly: AssemblyCopyright("Copyright ©  2020")]
+[assembly: AssemblyCompany("BackInBash")]
+[assembly: AssemblyProduct("iD3 Metadata Service")]
+[assembly: AssemblyCopyright("Copyright BackInBash ©  2020")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
