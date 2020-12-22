@@ -1,74 +1,11 @@
-﻿using Newtonsoft.Json;
+﻿using iD3.Service.Models.LastFM;
+using Newtonsoft.Json;
 using System;
-using System.Collections.Generic;
 using System.Net;
 using System.Threading.Tasks;
 
 namespace iD3.Service.MetadataProvider
 {
-    public partial class LastFmData
-    {
-        public Track Track { get; set; }
-    }
-
-    public partial class Track
-    {
-        public string Name { get; set; }
-        public Uri Url { get; set; }
-        public long Duration { get; set; }
-        public Streamable Streamable { get; set; }
-        public long Listeners { get; set; }
-        public long Playcount { get; set; }
-        public Artist Artist { get; set; }
-        public Album Album { get; set; }
-        public Toptags Toptags { get; set; }
-        public Wiki Wiki { get; set; }
-    }
-
-    public partial class Album
-    {
-        public string Artist { get; set; }
-        public string Title { get; set; }
-        public Uri Url { get; set; }
-        public List<Image> Image { get; set; }
-    }
-
-    public partial class Image
-    {
-        public Uri Text { get; set; }
-        public string Size { get; set; }
-    }
-
-    public partial class Artist
-    {
-        public string Name { get; set; }
-        public Guid Mbid { get; set; }
-        public Uri Url { get; set; }
-    }
-
-    public partial class Streamable
-    {
-        public long Text { get; set; }
-        public long Fulltrack { get; set; }
-    }
-
-    public partial class Toptags
-    {
-        public List<Tag> Tag { get; set; }
-    }
-
-    public partial class Tag
-    {
-        public string Name { get; set; }
-        public Uri Url { get; set; }
-    }
-
-    public partial class Wiki
-    {
-        public string Published { get; set; }
-        public string Summary { get; set; }
-        public string Content { get; set; }
-    }
     public class LastFM
     {
         private const string API = "https://ws.audioscrobbler.com/2.0/";

@@ -102,6 +102,21 @@
     <Compile Include="MetadataProvider\Discogs.cs" />
     <Compile Include="MetadataProvider\LastFM.cs" />
     <Compile Include="MetadataProvider\Local.cs" />
+    <Compile Include="Models\Discogs\Community.cs" />
+    <Compile Include="Models\Discogs\Format.cs" />
+    <Compile Include="Models\Discogs\Pagination.cs" />
+    <Compile Include="Models\Discogs\Result.cs" />
+    <Compile Include="Models\Discogs\SearchResult.cs" />
+    <Compile Include="Models\Discogs\Urls.cs" />
+    <Compile Include="Models\LastFM\Album.cs" />
+    <Compile Include="Models\LastFM\Artist.cs" />
+    <Compile Include="Models\LastFM\Image.cs" />
+    <Compile Include="Models\LastFM\LastFMData.cs" />
+    <Compile Include="Models\LastFM\Streamable.cs" />
+    <Compile Include="Models\LastFM\Tag.cs" />
+    <Compile Include="Models\LastFM\Toptags.cs" />
+    <Compile Include="Models\LastFM\Track.cs" />
+    <Compile Include="Models\LastFM\Wiki.cs" />
     <Compile Include="Service.cs">
       <SubType>Component</SubType>
     </Compile>
@@ -110,7 +125,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="MetaTrack.cs" />
+    <Compile Include="Models\MetaTrack.cs" />
     <Compile Include="Work.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -129,5 +144,6 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,5 @@
 ﻿using iD3.Service.MetadataProvider;
+using iD3.Service.Models.LastFM;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Collections.Generic;
 
