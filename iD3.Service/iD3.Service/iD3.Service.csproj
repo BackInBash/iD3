@@ -99,6 +99,7 @@
   <ItemGroup>
     <Compile Include="Event.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="MetadataProvider\Discogs.cs" />
     <Compile Include="MetadataProvider\LastFM.cs" />
     <Compile Include="MetadataProvider\Local.cs" />
     <Compile Include="Service.cs">

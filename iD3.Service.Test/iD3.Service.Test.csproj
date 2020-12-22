@@ -78,6 +78,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MetadataProvider\Test_Discogs.cs" />
     <Compile Include="MetadataProvider\Test_LastFM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
