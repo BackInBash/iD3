@@ -1,8 +1,6 @@
 ﻿using iD3.Service.MetadataProvider;
 using System;
-using System.Collections.Generic;
 using System.IO;
-using System.Linq;
 
 namespace iD3.Service
 {

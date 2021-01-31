@@ -1,6 +1,5 @@
 ﻿using iD3.Service.MetadataProvider;
 using Newtonsoft.Json;
-using NLog;
 using System;
 using System.IO;
 using System.Linq;
