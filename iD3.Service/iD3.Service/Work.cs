@@ -64,9 +64,7 @@ namespace iD3.Service
                         watcher.Filter = "*.*";
 
                         // Add event handlers.
-                        watcher.Changed += Event.OnChange;
                         watcher.Created += Event.OnCreate;
-                        watcher.Deleted += Event.OnDelete;
                         watcher.Renamed += Event.OnRename;
 
                         // Begin watching.
@@ -86,6 +84,16 @@ namespace iD3.Service
             {
                 logger.Fatal(ex, ex.Message);
             }
+        }
+
+        /// <summary>
+        /// Start Scheduler Task
+        /// </summary>
+        /// <param name="path"></param>
+        /// <param name="logger"></param>
+        public static void StartScheduler(string path, NLog.Logger logger)
+        {
+
         }
     }
 }

@@ -9,27 +9,6 @@ namespace iD3.Service
     public class Event
     {
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
-
-        /// <summary>
-        /// Delete Track Metadata Event
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public static void OnDelete(object source, FileSystemEventArgs e)
-        {
-
-        }
-
-        /// <summary>
-        /// Update Track Metadata Event
-        /// </summary>
-        /// <param name="source"></param>
-        /// <param name="e"></param>
-        public static void OnChange(object source, FileSystemEventArgs e)
-        {
-
-        }
-
         /// <summary>
         /// Create new Track Metadata Event
         /// </summary>
