@@ -27,7 +27,7 @@ namespace iD3.Service.MetadataProvider
         private const string APIKey = "rAzVUQYRaoFjeBjyWuWZ";
         private const string APISecret = "plxtUTqoCzwxZpqdPysCwGuBSmZNdZVy";
         private const string UserAgent = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/85.0.4183.121 Safari/537.36";
-
+        private NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
         /// <summary>
         /// Query Discogs API
         /// </summary>
@@ -48,6 +48,7 @@ namespace iD3.Service.MetadataProvider
             var headers = data.Headers.Concat(data.Content.Headers);
             if (headers.Where(x => x.Key.Equals("X-Discogs-Ratelimit-Remaining")).Select(x => x.Value).First().First() == "0")
             {
+                Logger.Debug("Discdigs Request Limit Triggered!");
                 throw new DiscogsRequestLimitException();
             }
             return JsonConvert.DeserializeObject<SearchResult>(await data.Content.ReadAsStringAsync());
