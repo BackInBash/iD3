@@ -39,7 +39,8 @@ namespace iD3.Service
                 }
                 else
                 {
-                    Work.MergeMetadata(e.FullPath, Logger).GetAwaiter().GetResult();
+                    if(Helper.IsTrack(e.FullPath))
+                        Work.MergeMetadata(e.FullPath, Logger).GetAwaiter().GetResult();
                 }
             }
             catch (Exception ex)
@@ -78,7 +79,8 @@ namespace iD3.Service
                 }
                 else
                 {
-                    Work.MergeMetadata(e.FullPath, Logger).GetAwaiter().GetResult();
+                    if (Helper.IsTrack(e.FullPath))
+                        Work.MergeMetadata(e.FullPath, Logger).GetAwaiter().GetResult();
                 }
             }
             catch (Exception ex)
