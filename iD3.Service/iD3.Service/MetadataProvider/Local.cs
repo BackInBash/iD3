@@ -33,18 +33,24 @@ namespace iD3.Service.MetadataProvider
                 track.title = tfile.Tag.Title ?? throw new MetadataException();
                 track.artist = tfile.Tag.FirstAlbumArtist ?? throw new MetadataException();
 
-                // Set Artist
-                track.artists = tfile.Tag.Performers;
-
-                // Set Album Name
-                track.album = tfile.Tag.Album;
-
-                // Set Genre
-                if (tfile.Tag.Genres.Length > 0)
+                try
                 {
-                    track.genre = tfile.Tag.Genres;
-                }
+                    // Set Artist
+                    track.artists = tfile.Tag.Performers;
 
+                    // Set Album Name
+                    track.album = tfile.Tag.Album;
+
+                    // Set Genre
+                    if (tfile.Tag.Genres.Length > 0)
+                    {
+                        track.genre = tfile.Tag.Genres;
+                    }
+                }
+                catch (Exception)
+                {
+                    // Optional Metadata
+                }
                 tfile.Dispose();
                 return track;
             }

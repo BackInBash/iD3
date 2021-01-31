@@ -2,6 +2,7 @@
 using System.Runtime.InteropServices;
 using System.ServiceProcess;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace iD3.Service
 {
@@ -12,7 +13,7 @@ namespace iD3.Service
             InitializeComponent();
         }
 
-        private Task FSWatcher = null;
+        private Task Worker = null;
         private static readonly NLog.Logger Logger = NLog.LogManager.GetCurrentClassLogger();
 
 
@@ -29,14 +30,23 @@ namespace iD3.Service
 
         protected override void OnStart(string[] args)
         {
-            FSWatcher = Task.Run(() => Work.StartFSWatcher(Program.ReadPath(), Logger));
+            if (args[0].Equals("-schedule", StringComparison.OrdinalIgnoreCase))
+            {
+                Logger.Info("Start Scheduler");
+                Worker = Task.Run(() => Work.StartScheduler(Program.ReadPath(), Logger));
+            }
+            else
+            {
+                Logger.Info("Start FS Watcher");
+                Worker = Task.Run(() => Work.StartFSWatcher(Program.ReadPath(), Logger));
+            }
         }
 
         protected override void OnStop()
         {
-            if (FSWatcher.Status == TaskStatus.Running)
+            if (Worker.Status == TaskStatus.Running)
             {
-                Logger.Info("Stopping FS Watcher...");
+                Logger.Info("Stopping Worker Task...");
                 Program.Shutdown = true;
                 //FSWatcher.Wait();
                 //FSWatcher.Dispose();

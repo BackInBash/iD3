@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Timers;
 
 namespace iD3.Service
 {
@@ -17,22 +18,27 @@ namespace iD3.Service
         /// <returns></returns>
         public async static Task MergeMetadata(string track, NLog.Logger logger)
         {
-            LastFM lastFM = new LastFM();
+            Discogs disc = new Discogs();
             Local local = new Local();
 
-            var data = await local.GetMetaData(track);
-            var lastFMdata = await lastFM.GetMetadata(data);
-
-            if(lastFMdata != null)
+            try
             {
-                logger.Debug("Recived LastFM Metadata");
-                if (data.genre == null)
+                var data = await local.GetMetaData(track);
+
+                var discogs = await disc.GetMetadata(data);
+
+                if (discogs != null)
                 {
-                    data.genre = lastFMdata.Track.Toptags.Tag.Select(x => x.Name).ToArray();
-                    logger.Debug("LastFM Metadata "+JsonConvert.SerializeObject(lastFMdata, Formatting.Indented));
+                    logger.Debug("Recived Discogs Metadata");
+                    data.genre = discogs;
+                    logger.Debug("Discogs Metadata " + JsonConvert.SerializeObject(discogs, Formatting.Indented));
                     await local.SetID3(data, track);
-                    logger.Info("Saved LastFM Metadata");
+                    logger.Info("Saved Discogs Metadata");
                 }
+            }
+            catch (Exception e)
+            {
+                logger.Error("Get Metadata for Track {0}. Stack Trace: {1}", e.Message, e.StackTrace);
             }
 
         }
@@ -92,7 +98,40 @@ namespace iD3.Service
         /// <param name="logger"></param>
         public static void StartScheduler(string path, NLog.Logger logger)
         {
+            try
+            {
+                logger.Info("Create Track " + path);
+                if (File.GetAttributes(path).HasFlag(FileAttributes.Directory))
+                {
+                    foreach (string file in Helper.GetTrackPaths(path))
+                    {
+                        try
+                        {
+                            Work.MergeMetadata(file, logger).GetAwaiter().GetResult();
+                        }
+                        catch (MetadataException ex)
+                        {
+                            logger.Error(ex, "Scheduler Metadata Exception Track is missing necessary Metadata" + ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            logger.Error(ex, "Scheduler " + ex.Message);
+                        }
+                    }
+                }
+                else
+                {
+                    if (Helper.IsTrack(path))
+                        Work.MergeMetadata(path, logger).GetAwaiter().GetResult();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex, "Scheduler " + ex.Message);
+            }
 
+            // Sleep for 2 h
+            Thread.Sleep(7200000);
         }
     }
 }
